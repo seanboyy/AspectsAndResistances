@@ -43,10 +43,12 @@ public class EnchantmentUtilities {
                 ench.equals(Enchantments.LIGHTNING.get()) ||
                 ench.equals(Enchantments.ELEMENTAL.get()) ||
                 ench.equals(Enchantments.POISON.get()) ||
+                ench.equals(Enchantments.WITHER.get()) ||
                 ench.equals(Enchantments.FIRE_ASPECT.get()) ||
                 ench.equals(Enchantments.COLD_ASPECT.get()) ||
                 ench.equals(Enchantments.POISON_ASPECT.get()) ||
                 ench.equals(Enchantments.ELEMENTAL_ASPECT.get()) ||
-                ench.equals(Enchantments.LIGHTNING_ASPECT.get()));
+                ench.equals(Enchantments.LIGHTNING_ASPECT.get()) ||
+                ench.equals(Enchantments.WITHER_ASPECT.get()));
     }
 }

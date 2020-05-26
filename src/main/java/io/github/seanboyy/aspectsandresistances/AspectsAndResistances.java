@@ -4,10 +4,15 @@ import io.github.seanboyy.aspectsandresistances.registries.Effects;
 import io.github.seanboyy.aspectsandresistances.registries.Enchantments;
 import io.github.seanboyy.aspectsandresistances.registries.Potions;
 import io.github.seanboyy.aspectsandresistances.util.Config;
+import net.minecraft.block.Blocks;
+import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionBrewing;
+import net.minecraft.potion.PotionUtils;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.brewing.BrewingRecipeRegistry;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -19,6 +24,8 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import static net.minecraft.potion.Potions.*;
 
 @Mod("aspectsandresistances")
 @Mod.EventBusSubscriber(modid = AspectsAndResistances.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
@@ -50,17 +57,21 @@ public class AspectsAndResistances {
 
     @SubscribeEvent
     public static void onPotionsRegisteredEvent(final RegistryEvent.Register<Potion> event) {
-        PotionBrewing.addMix(net.minecraft.potion.Potions.AWKWARD, net.minecraft.block.Blocks.BLUE_ICE.asItem(), Potions.FREEZE_RESISTANCE.get());
-        PotionBrewing.addMix(Potions.FREEZE_RESISTANCE.get(), Items.REDSTONE, Potions.LONG_FREEZE_RESISTANCE.get());
-        PotionBrewing.addMix(net.minecraft.potion.Potions.AWKWARD, net.minecraft.block.Blocks.SPONGE.asItem(), Potions.SHOCK_RESISTANCE.get());
-        PotionBrewing.addMix(Potions.SHOCK_RESISTANCE.get(), Items.REDSTONE, Potions.LONG_SHOCK_RESISTANCE.get());
-        PotionBrewing.addMix(net.minecraft.potion.Potions.POISON, Items.GLISTERING_MELON_SLICE, Potions.POISON_RESISTANCE.get());
-        PotionBrewing.addMix(Potions.POISON_RESISTANCE.get(), Items.REDSTONE, Potions.LONG_POISON_RESISTANCE.get());
-        PotionBrewing.addMix(net.minecraft.potion.Potions.LONG_POISON, Items.GLISTERING_MELON_SLICE, Potions.LONG_POISON_RESISTANCE.get());
-        PotionBrewing.addMix(Potions.POISON_RESISTANCE.get(), Items.WITHER_ROSE, Potions.WITHER_RESISTANCE.get());
-        PotionBrewing.addMix(Potions.LONG_POISON_RESISTANCE.get(), Items.WITHER_ROSE, Potions.LONG_WITHER_RESISTANCE.get());
-        PotionBrewing.addMix(Potions.WITHER_RESISTANCE.get(), Items.REDSTONE, Potions.LONG_WITHER_RESISTANCE.get());
+        BrewingRecipeRegistry.addRecipe(Ingredient.fromStacks(getType(AWKWARD)), Ingredient.fromItems(Blocks.BLUE_ICE.asItem()), getType(Potions.FREEZE_RESISTANCE.get()));
+        BrewingRecipeRegistry.addRecipe(Ingredient.fromStacks(getType(Potions.FREEZE_RESISTANCE.get())), Ingredient.fromItems(Items.REDSTONE), getType(Potions.LONG_FREEZE_RESISTANCE.get()));
+        BrewingRecipeRegistry.addRecipe(Ingredient.fromStacks(getType(AWKWARD)), Ingredient.fromItems(Blocks.SPONGE.asItem()), getType(Potions.SHOCK_RESISTANCE.get()));
+        BrewingRecipeRegistry.addRecipe(Ingredient.fromStacks(getType(Potions.SHOCK_RESISTANCE.get())), Ingredient.fromItems(Items.REDSTONE), getType(Potions.LONG_SHOCK_RESISTANCE.get()));
+        BrewingRecipeRegistry.addRecipe(Ingredient.fromStacks(getType(POISON)), Ingredient.fromItems(Items.GLISTERING_MELON_SLICE), getType(Potions.POISON_RESISTANCE.get()));
+        BrewingRecipeRegistry.addRecipe(Ingredient.fromStacks(getType(Potions.POISON_RESISTANCE.get())), Ingredient.fromItems(Items.REDSTONE), getType(Potions.LONG_POISON_RESISTANCE.get()));
+        BrewingRecipeRegistry.addRecipe(Ingredient.fromStacks(getType(LONG_POISON)), Ingredient.fromItems(Items.GLISTERING_MELON_SLICE), getType(Potions.LONG_POISON_RESISTANCE.get()));
+        BrewingRecipeRegistry.addRecipe(Ingredient.fromStacks(getType(Potions.POISON_RESISTANCE.get())), Ingredient.fromItems(Items.WITHER_ROSE), getType(Potions.WITHER_RESISTANCE.get()));
+        BrewingRecipeRegistry.addRecipe(Ingredient.fromStacks(getType(Potions.LONG_POISON_RESISTANCE.get())), Ingredient.fromItems(Items.WITHER_ROSE), getType(Potions.LONG_WITHER_RESISTANCE.get()));
+        BrewingRecipeRegistry.addRecipe(Ingredient.fromStacks(getType(Potions.WITHER_RESISTANCE.get())), Ingredient.fromItems(Items.REDSTONE), getType(Potions.LONG_WITHER_RESISTANCE.get()));
         LOGGER.info("Registered potion recipes");
+    }
+
+    private static ItemStack getType(Potion potion) {
+        return PotionUtils.addPotionToItemStack(new ItemStack(Items.POTION), potion);
     }
 
     @SubscribeEvent

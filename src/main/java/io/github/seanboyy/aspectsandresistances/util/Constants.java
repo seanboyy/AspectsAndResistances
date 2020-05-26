@@ -10,10 +10,6 @@ public final class Constants {
                 public static final String UUID = "3dfaf6e2-fa19-4100-a9e9-f53081090250";
             }
         }
-        public static final class Shock {
-            public static final float SHOCK_DAMAGE_SCALE = 0.25F;
-        }
-        public static final int DEFAULT_EFFECT_LENGTH = 5;
     }
 
     public static final class TimeScale {
