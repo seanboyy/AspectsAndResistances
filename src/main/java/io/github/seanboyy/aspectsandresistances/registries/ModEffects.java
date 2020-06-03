@@ -14,7 +14,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
-public class Effects {
+public class ModEffects {
     public static final DeferredRegister<Effect> EFFECTS = new DeferredRegister<>(ForgeRegistries.POTIONS, AspectsAndResistances.MOD_ID);
 
     public static final RegistryObject<Effect> FREEZE = EFFECTS.register("freeze",
@@ -38,8 +38,8 @@ public class Effects {
                 @Override
                 @ParametersAreNonnullByDefault
                 public void performEffect(LivingEntity entityLivingBaseIn, int amplifier) {
-                    if(entityLivingBaseIn.isPotionActive(Effects.FREEZE.get())) {
-                        entityLivingBaseIn.removePotionEffect(Effects.FREEZE.get());
+                    if(entityLivingBaseIn.isPotionActive(ModEffects.FREEZE.get())) {
+                        entityLivingBaseIn.removePotionEffect(ModEffects.FREEZE.get());
                     }
                 }
             });
@@ -54,8 +54,8 @@ public class Effects {
                 @Override
                 @ParametersAreNonnullByDefault
                 public void performEffect(LivingEntity entityLivingBaseIn, int amplifier) {
-                    if(entityLivingBaseIn.isPotionActive(Effects.SHOCK.get())) {
-                        entityLivingBaseIn.removePotionEffect(Effects.SHOCK.get());
+                    if(entityLivingBaseIn.isPotionActive(ModEffects.SHOCK.get())) {
+                        entityLivingBaseIn.removePotionEffect(ModEffects.SHOCK.get());
                     }
                 }
             });
@@ -87,7 +87,7 @@ public class Effects {
                 public void performEffect(LivingEntity entityLivingBaseIn, int amplifier) {
                     if(entityLivingBaseIn.isPotionActive(net.minecraft.potion.Effects.WITHER)) {
                         entityLivingBaseIn.removePotionEffect(net.minecraft.potion.Effects.WITHER);
-                    };
+                    }
                 }
             });
 }

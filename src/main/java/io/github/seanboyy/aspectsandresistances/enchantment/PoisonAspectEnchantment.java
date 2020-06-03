@@ -1,7 +1,7 @@
 package io.github.seanboyy.aspectsandresistances.enchantment;
 
 import io.github.seanboyy.aspectsandresistances.AspectsAndResistances;
-import io.github.seanboyy.aspectsandresistances.registries.Enchantments;
+import io.github.seanboyy.aspectsandresistances.registries.ModEnchantments;
 import io.github.seanboyy.aspectsandresistances.util.EnchantmentUtilities;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -47,8 +47,8 @@ public class PoisonAspectEnchantment extends Enchantment {
             LivingEntity target = event.getEntityLiving();
             if(event.getSource().getTrueSource() instanceof LivingEntity) {
                 LivingEntity source = (LivingEntity) event.getSource().getTrueSource();
-                int level = EnchantmentHelper.getEnchantmentLevel(Enchantments.POISON_ASPECT.get(), source.getHeldItemMainhand());
-                if(level >= Enchantments.POISON_ASPECT.get().getMinLevel()) {
+                int level = EnchantmentHelper.getEnchantmentLevel(ModEnchantments.POISON_ASPECT.get(), source.getHeldItemMainhand());
+                if(level >= ModEnchantments.POISON_ASPECT.get().getMinLevel()) {
                     EnchantmentUtilities.applyPoisonDebuffs(target, level);
                 }
             }

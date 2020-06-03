@@ -1,7 +1,7 @@
 package io.github.seanboyy.aspectsandresistances.enchantment;
 
 import io.github.seanboyy.aspectsandresistances.AspectsAndResistances;
-import io.github.seanboyy.aspectsandresistances.registries.Enchantments;
+import io.github.seanboyy.aspectsandresistances.registries.ModEnchantments;
 import io.github.seanboyy.aspectsandresistances.util.EnchantmentUtilities;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -52,8 +52,8 @@ public class ElementalEnchantment extends Enchantment {
             LivingEntity target = event.getEntityLiving();
             if(event.getSource().getTrueSource() instanceof LivingEntity) {
                 LivingEntity source = (LivingEntity) event.getSource().getTrueSource();
-                int level = EnchantmentHelper.getEnchantmentLevel(Enchantments.ELEMENTAL.get(), source.getHeldItemMainhand());
-                if(level >= Enchantments.ELEMENTAL.get().getMinLevel()) {
+                int level = EnchantmentHelper.getEnchantmentLevel(ModEnchantments.ELEMENTAL.get(), source.getHeldItemMainhand());
+                if(level >= ModEnchantments.ELEMENTAL.get().getMinLevel()) {
                     EnchantmentUtilities.applyElementalDebuffs(target, level);
                 }
             }
